@@ -57,18 +57,36 @@ done = datetime.now()
 print("Answer to part 1:", len(seen))
 print("Time taken:", done - now)
 
-# now = datetime.now()
+now = datetime.now()
 
-# empty = 70000000 - struct['/']['size']
-# target = 30000000 - empty
+best = 0
 
-# best = 70000000
+for x in range(len(f)):
+    for y in range(len(f)):
+        val = []
+        compare = grid[x, y]
+        for d in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            steps = 1
+            posx = x
+            posy = y
+            while posx >= 0 and posx < len(f) and posy >= 0 and posy < len(f) and grid[posx, posy] <= compare:
+                posx = posx + d[0]
+                posy = posy + d[1]
+                if posx < 0 or posx >= len(f) or posy < 0 or posy >= len(f):
+                    steps -= 1
+                    break
+                # print(x, y, d, posx, posy, steps, grid[posx, posy])
+                if grid[posx, posy] >= compare:
+                    break
+                steps += 1
+            # print('===', x, y,  d, steps)
+            val.append(steps)
+        # print(x, y, val, val[0] * val[1] * val[2] * val[3])
+        calc = val[0] * val[1] * val[2] * val[3]
+        if calc > best:
+            best = calc
+            # print(x, y, calc)
 
-# for s in struct:
-#     val = struct[s]['size']
-#     if val > target and val < best:
-#         best = val
-
-# done = datetime.now()
-# print("Answer to part 2:", best)
-# print("Time taken:", done - now)
+done = datetime.now()
+print("Answer to part 2:", best)
+print("Time taken:", done - now)
