@@ -90,7 +90,7 @@ done = datetime.now()
 print("Answer to part 1:", len(positions))
 print("Time taken:", done - now)
 
-# now = datetime.now()
+now = datetime.now()
 
 rope = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
         [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
